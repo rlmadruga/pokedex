@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Wrapper, PokeContainer } from './styles';
 import Card from '../../components/Card/Card';
+import Loading from '../../components/Loading/Loading';
 import API from '../../api/api';
 
 function Home() {
@@ -45,7 +46,7 @@ function Home() {
           </ul>
         ) : (
           <div>
-            <p>Loading...</p>
+            <Loading />
           </div>
         )}
       </PokeContainer>
