@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const CardWrapper = styled.div`
-  background-color: ${(props) => (props.color ? props : '#eee')};
+  background-color: ${(props) => (props.color ? props.color : '#eee')};
   border-radius: 20px;
   box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
   margin: 10px;
@@ -33,5 +33,9 @@ export const Info = styled.div`
   h3 {
     margin: 15px 0 7px;
     letter-spacing: 1px;
+  }
+
+  span.none {
+    background-color: transparent;
   }
 `;

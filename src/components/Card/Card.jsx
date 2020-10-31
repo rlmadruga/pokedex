@@ -4,25 +4,32 @@ import { pokemonTypeColors, pokemonTypes } from '../../helper/helper';
 
 const Card = ({ name, id, types }) => {
   const namePokemon = name[0].toUpperCase() + name.slice(1);
-  const typePokemon = types.map((type) => type.type.name);
-  const type = pokemonTypes.find((type) => typePokemon.indexOf(type) > -1);
-  const color = pokemonTypeColors[type];
+  const typePokemon = types[0].type.name;
+  console.log('typePokemon', typePokemon);
 
-  <CardWrapper color={color}>
-    <ImgContainer>
-      <img
-        src={`https://pokeres.bastionbot.org/images/pokemon/${id}.png`}
-        alt={namePokemon}
-      />
-    </ImgContainer>
-    <Info>
-      <span>#{id.toString().padStart(3, '0')}</span>
-      <h3 class='name'>{namePokemon}</h3>
-      <small>
-        Tipo: <span>{type}</span>
-      </small>
-    </Info>
-  </CardWrapper>;
+  const type = pokemonTypes.find((typeColor) => typeColor === typePokemon);
+  console.log('type', type);
+
+  const color = pokemonTypeColors[type];
+  console.log('color', color);
+
+  return (
+    <CardWrapper color={color}>
+      <ImgContainer>
+        <img
+          src={`https://pokeres.bastionbot.org/images/pokemon/${id}.png`}
+          alt={namePokemon}
+        />
+      </ImgContainer>
+      <Info>
+        <span>#{id.toString().padStart(3, '0')}</span>
+        <h3 className='name'>{namePokemon}</h3>
+        <small>
+          Tipo: <span className='none'>{typePokemon}</span>
+        </small>
+      </Info>
+    </CardWrapper>
+  );
 };
 
 export default Card;
