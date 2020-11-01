@@ -13,6 +13,7 @@ export default function Routes() {
           <Route exact path='/' component={Signup} />
           <Route path='/login' component={Login} />
           <Route path='/home' component={Home} />
+          <Route path='*' component={() => <div>Pagina 404</div>} />
         </Switch>
       </AuthProvider>
     </Router>
