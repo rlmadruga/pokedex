@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { useAuth } from '../../contexts/AuthContext';
 import { Wrapper, PokeContainer } from './styles';
 import Card from '../../components/Card/Card';
 import Loading from '../../components/Loading/Loading';
 import API from '../../api/api';
-import {} from '../../components/Navbar/Navbar';
 import Navbar from '../../components/Navbar/Navbar';
 
 function Home() {
   const [pokemons, setPokemons] = useState({});
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  // const [errorLog, setErrorLog] = useState('');
+
+  const { currentUser, logout } = useAuth();
 
   useEffect(() => {
     let isMounted = true;
@@ -36,9 +39,8 @@ function Home() {
 
   return (
     <>
-      <Navbar />
+      <Navbar currentUser={currentUser} logout={logout} />
       <Wrapper>
-        <h1>Pokedex</h1>
         <PokeContainer>
           {isLoading ? (
             <ul style={{ paddingInlineStart: '0px', textAlign: 'center' }}>

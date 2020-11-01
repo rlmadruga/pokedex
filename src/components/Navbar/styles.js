@@ -44,7 +44,10 @@ export const NavBar = styled.nav`
     display: flex;
     line-height: 45px;
 
-    a {
+    a,
+    button {
+      padding: 0 10px;
+
       font-family: Lato, sans-serif;
       cursor: pointer;
       font-size: 1rem;
@@ -67,5 +70,22 @@ export const NavBar = styled.nav`
       font-weight: 700;
       padding: 0 10px;
     }
+
+    button {
+      color: #fff;
+      border: none;
+
+      margin-left: 10px;
+    }
   }
+`;
+
+export const ErrorMessage = styled.button`
+  background-color: #fff;
+  font-size: 1rem;
+  margin: 1em;
+  padding: 0.25em 1em;
+  color: tomato;
+  border: 2px solid tomato;
+  border-radius: 3px;
 `;
