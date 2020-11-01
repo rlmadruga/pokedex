@@ -3,6 +3,11 @@
   src: url(./assets/font/Pokemon\ Solid.ttf);
 }
 
+@font-face {
+  font-family: PokemonH;
+  src: url(./assets/font/Pokemon\ Hollow.ttf);
+}
+
 * {
   margin: 0;
   padding: 0;
