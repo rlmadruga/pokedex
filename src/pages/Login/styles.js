@@ -152,3 +152,12 @@ export const FooterForm = styled.div`
     }
   }
 `;
+
+export const ErrorMessage = styled.button`
+  font-size: 1rem;
+  margin: 1em;
+  padding: 0.25em 1em;
+  color: tomato;
+  border: 2px solid tomato;
+  border-radius: 3px;
+`;
