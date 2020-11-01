@@ -62,7 +62,7 @@ export const SignUpForm = styled.form`
     font-size: 15px;
     color: #555555;
     line-height: 1.2;
-    border: 1px solid rgba(85, 85, 85, 0.3);
+    border: 2px solid rgba(85, 85, 85, 0.3);
     border-radius: 10px;
 
     display: block;
@@ -72,7 +72,7 @@ export const SignUpForm = styled.form`
     padding: 0 5px;
   }
 
-  span.focus-input {
+  /* span.focus-input {
     position: absolute;
     display: block;
     width: 100%;
@@ -80,6 +80,9 @@ export const SignUpForm = styled.form`
     top: 0;
     left: 0;
     pointer-events: none;
+  } */
+  input:focus {
+    outline-color: #58575f;
   }
 
   div.container-form-btn {

@@ -9,7 +9,7 @@ import {
   FooterForm,
   ErrorMessage,
 } from './styles';
-import bag from '../../assets/images/Bag_icon.svg';
+import pokedex from '../../assets/images/Pokedex_icon.svg';
 
 const Signup = () => {
   const emailRef = useRef();
@@ -46,7 +46,7 @@ const Signup = () => {
           <SignUpForm onSubmit={handleSubmit}>
             <span className='login-form-title '> Welcome</span>
             <span className='login-form-title'>
-              <img src={bag} alt='Pokeball icon' />
+              <img src={pokedex} alt='Pokeball icon' />
               {error && <ErrorMessage>{error}</ErrorMessage>}
             </span>
             <div className='wrap-input'>

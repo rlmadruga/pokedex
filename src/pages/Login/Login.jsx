@@ -8,7 +8,7 @@ import {
   FooterForm,
   ErrorMessage,
 } from './styles.js';
-import pokeball from '../../assets/images/Pokeball_icon.svg';
+import pokeball from '../../assets/images/pokeball_icon2.svg';
 import { useAuth } from '../../contexts/AuthContext';
 
 const Login = () => {
@@ -28,7 +28,7 @@ const Login = () => {
       await login(emailRef.current.value, passwordRef.current.value);
       history.push('/home');
     } catch {
-      setError('Failed to sign in!');
+      setError('Failed to Log In, check your email or password!');
     }
 
     setLoading(false);
