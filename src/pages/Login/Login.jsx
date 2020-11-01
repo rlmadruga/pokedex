@@ -9,7 +9,7 @@ const Login = () => {
       <Container>
         <LoginWrap>
           <LoginForm>
-            <span className='login-form-title '> Welcome</span>
+            <span className='login-form-title '> Login</span>
             <span className='login-form-title'>
               <img src={pokeball} alt='Pokeball icon' />
             </span>
@@ -29,7 +29,7 @@ const Login = () => {
             <FooterForm>
               <span className='txt'>Don't have an account?</span>
 
-              <Link className='txt' to='/signup'>
+              <Link className='txt' to='/'>
                 Sign Up
               </Link>
             </FooterForm>
