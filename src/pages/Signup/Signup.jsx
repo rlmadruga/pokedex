@@ -54,7 +54,13 @@ const Signup = () => {
               <span className='focus-input'></span>
             </div>
             <div className='wrap-input'>
-              <input type='password' placeholder='Password' ref={passwordRef} required />
+              <input
+                type='password'
+                placeholder='Password'
+                ref={passwordRef}
+                minLength='6'
+                required
+              />
               <span className='focus-input'></span>
             </div>
             <div className='wrap-input'>
@@ -62,6 +68,7 @@ const Signup = () => {
                 type='password'
                 placeholder='Confirm Password'
                 ref={passwordConfirmRef}
+                minLength='6'
                 required
               />
               <span className='focus-input'></span>
