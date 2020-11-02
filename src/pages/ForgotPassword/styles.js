@@ -41,13 +41,13 @@ export const LoginForm = styled.form`
     line-height: 1.2;
     text-align: center;
     padding-bottom: 26px;
-    letter-spacing: 3px;
+    letter-spacing: 5px;
   }
 
   img {
     text-align: center;
-    width: 50px;
-    padding-bottom: 48px;
+    width: 90px;
+    padding-bottom: 28px;
   }
 
   div.wrap-input,
@@ -178,7 +178,7 @@ export const ErrorMessage = styled.button`
   font-size: 1rem;
   margin: 1em;
   padding: 0.25em 1em;
-  color: tomato;
-  border: 2px solid tomato;
+  color: ${(props) => (props.color ? props.color : 'tomato')};
+  border: 2px solid ${(props) => (props.color ? props.color : 'tomato')};
   border-radius: 3px;
 `;

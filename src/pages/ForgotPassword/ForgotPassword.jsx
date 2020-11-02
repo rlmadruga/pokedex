@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   Wrapper,
   Container,
@@ -7,28 +7,29 @@ import {
   LoginForm,
   FooterForm,
   ErrorMessage,
-} from './styles.js';
-import pokeball from '../../assets/images/pokeball_icon2.svg';
+} from './styles';
+import eggOh from '../../assets/images/hatching_egg_icon.svg';
 import { useAuth } from '../../contexts/AuthContext';
 
-const Login = () => {
+const ForgotPassword = () => {
   const emailRef = useRef();
-  const passwordRef = useRef();
-  const { login } = useAuth();
+
+  const { resetPassword } = useAuth();
   const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
   const [isLoading, setLoading] = useState(false);
-  const history = useHistory();
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
+      setMessage('');
       setError('');
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
-      history.push('/home');
+      await resetPassword(emailRef.current.value);
+      setMessage('Check your inbox for further instructions!');
     } catch {
-      setError('Failed to Log In, check your email or password!');
+      setError('Failed to reset Password!');
     }
 
     setLoading(false);
@@ -38,28 +39,25 @@ const Login = () => {
       <Container>
         <LoginWrap>
           <LoginForm onSubmit={handleSubmit}>
-            <span className='login-form-title '> Login</span>
+            <span className='login-form-title '> Password Reset</span>
             <span className='login-form-title'>
-              <img src={pokeball} alt='Pokeball icon' />
+              <img src={eggOh} alt='Pokeball icon' />
               {error && <ErrorMessage>{error}</ErrorMessage>}
+              {message && <ErrorMessage color={'mediumseagreen'}>{message}</ErrorMessage>}
             </span>
             <div className='wrap-input'>
               <input type='email' placeholder='Email' ref={emailRef} required />
               <span className='focus-input'></span>
             </div>
-            <div className='wrap-input-password'>
-              <input type='password' placeholder='Password' ref={passwordRef} required />
-              <span className='focus-input'></span>
-            </div>
             <div className='wrap-password'>
-              <Link className='txt-password' to='/forgot-password'>
-                Forgot Password?
+              <Link className='txt-password' to='/login'>
+                Go to Login
               </Link>
             </div>
             <div className='container-form-btn'>
               <div className='wrap-form-btn'>
                 <button disabled={isLoading} type='submit' className='login'>
-                  Login
+                  Reset Password
                 </button>
               </div>
             </div>
@@ -77,4 +75,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;
