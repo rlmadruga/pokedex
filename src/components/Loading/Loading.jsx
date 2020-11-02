@@ -1,7 +1,11 @@
-import { Pokeball } from './styles';
+import { Wrapper, Pokeball } from './styles';
 
 const Loading = () => {
-  return <Pokeball />;
+  return (
+    <Wrapper>
+      <Pokeball />
+    </Wrapper>
+  );
 };
 
 export default Loading;

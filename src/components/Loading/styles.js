@@ -6,6 +6,12 @@ const grow = keyframes`
     }
 `;
 
+export const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const Pokeball = styled.div`
   height: 125px;
   width: 125px;
@@ -18,10 +24,10 @@ export const Pokeball = styled.div`
   &:before {
     position: absolute;
     content: '';
-    height: 25px;
-    width: 125px;
+    height: 12.5px;
+    width: 110px;
     background-color: #383b4f;
-    top: 56.25px;
+    top: 51.25px;
   }
 
   &:after {
@@ -39,7 +45,7 @@ export const Pokeball = styled.div`
       #383b4f 16px
     );
     border-radius: 50%;
-    top: 40px;
-    left: 40px;
+    top: 30px;
+    left: 30px;
   }
 `;

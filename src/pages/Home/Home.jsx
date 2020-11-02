@@ -8,14 +8,45 @@ import API from '../../api/api';
 import Navbar from '../../components/Navbar/Navbar';
 
 function Home() {
-  const [pokemons, setPokemons] = useState({});
+  const [pokemons, setPokemons] = useState([]);
+  const [pokemonDetails, setPokemonDetails] = useState([]);
+  //const [nexPageURL, setNextPageURL] = useState();
+  // const [prevPageURL, setPrevPageURL] = useState();
+
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  // const [errorLog, setErrorLog] = useState('');
 
   const { currentUser, logout } = useAuth();
 
   const handleCardDetails = (id) => {};
+
+  // const getPokemons = async () => {
+  //   const url = 'pokemon';
+  //   const res = await API.get(url);
+
+  //   setPokemons(res.data.results);
+
+  //   getPokemonDetails(pokemons);
+  // };
+
+  // const getPokemonDetails = async (pokemons) => {
+  //   pokemons.map((poke) => {
+  //     let urlSplit = poke.url.split('/');
+  //     let id = urlSplit[6];
+
+  //     API.get(`pokemon/${id}`)
+  //       .then((res) => {
+  //         let data = res.data;
+  //         let temp = pokemonDetails.length !== 0 ? [...pokemonDetails, data] : null;
+
+  //         setPokemonDetails([...temp]);
+  //       })
+  //       .catch((err) => {
+  //         setError(err.message);
+  //         setLoading(true);
+  //       });
+  //   });
+  // };
 
   useEffect(() => {
     let isMounted = true;
@@ -24,7 +55,7 @@ function Home() {
       .then((res) => {
         if (isMounted) {
           // console.log(res);
-          setPokemons(res.data);
+          setPokemons([res.data]);
           setLoading(true);
         }
       })
@@ -38,8 +69,6 @@ function Home() {
     };
   }, []);
 
-  console.log(pokemons.id);
-
   return (
     <>
       <Navbar currentUser={currentUser} logout={logout} />
@@ -51,12 +80,17 @@ function Home() {
               {error ? (
                 <li>{error.message}</li>
               ) : (
-                <Card
-                  onClick={() => handleCardDetails(pokemons.id)}
-                  id={pokemons.id}
-                  name={pokemons.name}
-                  types={pokemons.types}
-                />
+                pokemons.map((pokemon) => {
+                  return (
+                    <Card
+                      key={pokemon.id}
+                      onClick={() => handleCardDetails(pokemon.id)}
+                      id={pokemon.id}
+                      name={pokemon.name}
+                      types={pokemon.types}
+                    />
+                  );
+                })
               )}
             </ul>
           ) : (
