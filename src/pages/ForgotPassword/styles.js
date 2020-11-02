@@ -178,6 +178,7 @@ export const ErrorMessage = styled.button`
   font-size: 1rem;
   margin: 1em;
   padding: 0.25em 1em;
+  background-color: transparent;
   color: ${(props) => (props.color ? props.color : 'tomato')};
   border: 2px solid ${(props) => (props.color ? props.color : 'tomato')};
   border-radius: 3px;
