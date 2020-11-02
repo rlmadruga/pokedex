@@ -1,6 +1,7 @@
 import React from 'react';
 import { CardWrapper, ImgContainer, Info } from './styles';
 import { pokemonTypeColors, pokemonTypes } from '../../helper/helper';
+import FavoriteIcon from '../../assets/images/Favourite_icon.svg';
 
 const Card = ({ name, id, types }) => {
   const namePokemon = name[0].toUpperCase() + name.slice(1);
@@ -15,6 +16,7 @@ const Card = ({ name, id, types }) => {
 
   return (
     <CardWrapper color={color}>
+      <img className='img-favorite' src={FavoriteIcon} alt='Favorite Icon' />
       <ImgContainer>
         <img
           src={`https://pokeres.bastionbot.org/images/pokemon/${id}.png`}

@@ -7,6 +7,19 @@ export const CardWrapper = styled.div`
   margin: 10px;
   padding: 20px;
   text-align: center;
+
+  img.img-favorite {
+    width: 30px;
+    padding-bottom: 10px;
+    filter: grayscale(100%) invert(100%);
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      filter: none;
+      transition: 0.2s;
+    }
+  }
 `;
 
 export const ImgContainer = styled.div`
@@ -17,7 +30,7 @@ export const ImgContainer = styled.div`
   text-align: center;
 
   img {
-    margin-top: 20px;
+    margin-top: 15px;
     max-width: 90%;
   }
 `;
