@@ -11,6 +11,7 @@ export const CardWrapper = styled.div`
   transition: 0.2s;
 
   &:hover {
+    cursor: pointer;
     filter: none;
     transition: 0.2s;
 

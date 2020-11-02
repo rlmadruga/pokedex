@@ -27,7 +27,7 @@ const Card = ({ name, id, types }) => {
         <span>#{id.toString().padStart(3, '0')}</span>
         <h3 className='name'>{namePokemon}</h3>
         <small>
-          Type: <span className='none'>{typePokemon}</span>
+          <span className='none'>{typePokemon}</span>
         </small>
       </Info>
     </CardWrapper>
