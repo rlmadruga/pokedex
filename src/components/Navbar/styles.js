@@ -47,7 +47,7 @@ export const NavBar = styled.nav`
     a,
     button {
       padding: 0 10px;
-
+      font-family: Lato;
       cursor: pointer;
       font-size: 1rem;
       font-weight: 700;
