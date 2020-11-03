@@ -32,7 +32,7 @@ const Signup = () => {
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
       await verifyUser();
-      history.push('/home');
+      history.push('/verify-email');
     } catch {
       setError('Failed to create an account!');
     }

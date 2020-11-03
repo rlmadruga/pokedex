@@ -48,7 +48,6 @@ export const NavBar = styled.nav`
     button {
       padding: 0 10px;
 
-      font-family: Lato, sans-serif;
       cursor: pointer;
       font-size: 1rem;
       font-weight: 700;

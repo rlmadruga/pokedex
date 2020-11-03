@@ -10,8 +10,8 @@ import Navbar from '../../components/Navbar/Navbar';
 function Home() {
   const [pokemons, setPokemons] = useState([]);
   const [pokemonDetails, setPokemonDetails] = useState([]);
-  //const [nexPageURL, setNextPageURL] = useState();
-  // const [prevPageURL, setPrevPageURL] = useState();
+  const [nexPageURL, setNextPageURL] = useState();
+  const [prevPageURL, setPrevPageURL] = useState();
 
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -20,53 +20,40 @@ function Home() {
 
   const handleCardDetails = (id) => {};
 
-  // const getPokemons = async () => {
-  //   const url = 'pokemon';
-  //   const res = await API.get(url);
+  const getPokemons = async () => {
+    const getPokemonData = await API.get('pokemon');
 
-  //   setPokemons(res.data.results);
+    let pokemons_data = [...pokemons, ...getPokemonData.data.results];
+    setPokemons(pokemons_data);
+    setNextPageURL(getPokemonData.next);
+    setPrevPageURL(getPokemonData.previous);
 
-  //   getPokemonDetails(pokemons);
-  // };
+    // let temp2 = [];
 
-  // const getPokemonDetails = async (pokemons) => {
-  //   pokemons.map((poke) => {
-  //     let urlSplit = poke.url.split('/');
-  //     let id = urlSplit[6];
+    await Promise.all(
+      getPokemonData.data.results.map(async (poke) => {
+        let url = poke.url.split('/');
+        let id = url[6];
 
-  //     API.get(`pokemon/${id}`)
-  //       .then((res) => {
-  //         let data = res.data;
-  //         let temp = pokemonDetails.length !== 0 ? [...pokemonDetails, data] : null;
+        let pokeDetails = await API.get(`pokemon/${id}`);
+        let pokeDetails_data = pokeDetails.data;
 
-  //         setPokemonDetails([...temp]);
-  //       })
-  //       .catch((err) => {
-  //         setError(err.message);
-  //         setLoading(true);
-  //       });
-  //   });
-  // };
+        let temp =
+          pokemonDetails.includes(pokeDetails_data) === true
+            ? [...pokemonDetails]
+            : pokemonDetails.push(pokeDetails_data);
+
+        let temp2 = [...pokemonDetails];
+
+        temp2.sort((a, b) => a.id - b.id);
+        setPokemonDetails([...temp2]);
+      })
+    );
+  };
 
   useEffect(() => {
-    let isMounted = true;
-
-    API.get('pokemon/1')
-      .then((res) => {
-        if (isMounted) {
-          // console.log(res);
-          setPokemons([res.data]);
-          setLoading(true);
-        }
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(true);
-      });
-
-    return () => {
-      isMounted = false;
-    };
+    getPokemons();
+    setLoading(true);
   }, []);
 
   return (
@@ -75,15 +62,21 @@ function Home() {
       <Wrapper>
         <Search />
         <PokeContainer>
-          {isLoading ? (
-            <ul style={{ paddingInlineStart: '0px', textAlign: 'center' }}>
+          {isLoading && pokemonDetails.length !== 0 ? (
+            <ul
+              style={{
+                paddingInlineStart: '0px',
+                textAlign: 'center',
+                display: 'contents',
+              }}
+            >
               {error ? (
                 <li>{error.message}</li>
               ) : (
-                pokemons.map((pokemon) => {
+                pokemonDetails.map((pokemon) => {
                   return (
                     <Card
-                      key={pokemon.id}
+                      key={pokemon.id + pokemon.name}
                       onClick={() => handleCardDetails(pokemon.id)}
                       id={pokemon.id}
                       name={pokemon.name}

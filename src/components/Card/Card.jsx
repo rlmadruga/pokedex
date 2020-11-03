@@ -6,13 +6,13 @@ import FavoriteIcon from '../../assets/images/Favourite_icon.svg';
 const Card = ({ name, id, types }) => {
   const namePokemon = name[0].toUpperCase() + name.slice(1);
   const typePokemon = types[0].type.name;
-  console.log('typePokemon', typePokemon);
+  // console.log('typePokemon', typePokemon);
 
   const type = pokemonTypes.find((typeColor) => typeColor === typePokemon);
-  console.log('type', type);
+  // console.log('type', type);
 
   const color = pokemonTypeColors[type];
-  console.log('color', color);
+  // console.log('color', color);
 
   return (
     <CardWrapper color={color}>

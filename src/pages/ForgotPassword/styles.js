@@ -59,7 +59,6 @@ export const LoginForm = styled.form`
   }
 
   input {
-    font-family: Lato, sans-serif;
     font-size: 15px;
     color: #555555;
     line-height: 1.2;
@@ -121,7 +120,6 @@ export const LoginForm = styled.form`
   }
 
   button.login {
-    font-family: Lato, sans-serif;
     font-size: 15px;
     background-color: #ff0000;
     color: #fff;
@@ -154,7 +152,6 @@ export const FooterForm = styled.div`
 
   span.txt,
   a.txt {
-    font-family: Lato, sans-serif;
     font-size: 13px;
     color: #666666;
     line-height: 1.5;
