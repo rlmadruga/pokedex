@@ -145,6 +145,10 @@ export const LoginForm = styled.form`
       background-color: #ea5d60;
       color: #fff;
     }
+
+    &:disabled {
+      background-color: #e2e2e2;
+    }
   }
 `;
 

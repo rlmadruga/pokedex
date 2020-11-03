@@ -72,15 +72,6 @@ export const SignUpForm = styled.form`
     padding: 0 5px;
   }
 
-  /* span.focus-input {
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-  } */
   input:focus {
     outline-color: #58575f;
   }
@@ -126,6 +117,10 @@ export const SignUpForm = styled.form`
       transition: 0.2s;
       background-color: #ea5d60;
       color: #fff;
+    }
+
+    &:disabled {
+      background-color: #e2e2e2;
     }
   }
 `;
