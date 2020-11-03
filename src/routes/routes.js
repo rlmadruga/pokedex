@@ -6,6 +6,7 @@ import Signup from '../pages/Signup/Signup';
 import Login from '../pages/Login/Login';
 import Home from '../pages/Home/Home';
 import ForgotPassword from '../pages/ForgotPassword/ForgotPassword';
+import VerifyEmail from '../pages/VerifyEmail/VerifyEmail';
 
 export default function Routes() {
   return (
@@ -13,6 +14,7 @@ export default function Routes() {
       <AuthProvider>
         <Switch>
           <Route exact path='/' component={Signup} />
+          <Route path='/verify-email' component={VerifyEmail} />
           <Route path='/login' component={Login} />
           <PrivateRoute path='/home' component={Home} />
           <Route path='/forgot-password' component={ForgotPassword} />

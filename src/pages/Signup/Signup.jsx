@@ -15,7 +15,7 @@ const Signup = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const { signup } = useAuth();
+  const { signup, verifyUser } = useAuth();
   const [error, setError] = useState('');
   const [isLoading, setLoading] = useState(false);
   const history = useHistory();
@@ -31,6 +31,7 @@ const Signup = () => {
       setError('');
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
+      await verifyUser();
       history.push('/home');
     } catch {
       setError('Failed to create an account!');

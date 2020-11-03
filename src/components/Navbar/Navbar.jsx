@@ -36,7 +36,7 @@ const Navbar = ({ currentUser, logout }) => {
               LOGIN
             </Link>
             <p>|</p>
-            <Link as={Link} to='/signup'>
+            <Link as={Link} to='/'>
               SIGN UP
             </Link>
           </>
