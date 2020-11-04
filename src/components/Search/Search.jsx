@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SearchWrap, SearchInternal, Button, Input } from './styles';
 
-const Search = () => {
-  // const [text, setText] = useState('');
+const Search = (props) => {
+  const [text, setText] = useState('');
+
+  const handleChange = (e) => {
+    setText(e.target.value);
+  };
+
+  useEffect(() => {
+    props.search(text);
+  }, [text]);
 
   return (
     <SearchWrap>
@@ -11,8 +19,8 @@ const Search = () => {
           <i className='fa fa-search'></i>
         </Button>
         <Input
-          // onChange={(e) => setText(e.target.value)}
-          // value={text}
+          onChange={handleChange}
+          value={text}
           type='text'
           placeholder='Search Pokemon by Number or Name'
         />

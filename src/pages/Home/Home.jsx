@@ -27,6 +27,10 @@ function Home() {
   };
 
   const [search, setSearch] = useState('');
+  const handleSearch = (newSearch) => {
+    let searchLow = newSearch.toLowerCase();
+    setSearch(searchLow);
+  };
 
   const getPokemons = async () => {
     try {
@@ -59,7 +63,7 @@ function Home() {
 
     setLoading(true);
   };
-  console.log(search);
+
   useEffect(() => {
     getPokemons();
   }, []);
@@ -68,7 +72,7 @@ function Home() {
     <>
       <Navbar currentUser={currentUser} logout={logout} />
       <Wrapper>
-        <Search onChange={(e) => setSearch(e.target.value)} />
+        <Search search={handleSearch} />
         <PokeContainer>
           {isLoading && pokemonDetails.length !== 0 ? (
             <ul
@@ -82,7 +86,7 @@ function Home() {
                 <li>{error.message}</li>
               ) : (
                 pokemonDetails
-                  .filter((poke) => poke.name.includes(search.toLowerCase()))
+                  .filter((poke) => poke.name.includes(search))
                   .map((pokemon) => {
                     return (
                       <div key={pokemon.id} onClick={() => handleCardDetails(pokemon.id)}>
