@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { Wrapper, PokeContainer } from './styles';
 import Card from '../../components/Card/Card';
+import CardDetails from '../../components/CardDetails/CardDetails';
 import Loading from '../../components/Loading/Loading';
 import Search from '../../components/Search/Search';
 import API from '../../api/api';
@@ -10,25 +11,30 @@ import Navbar from '../../components/Navbar/Navbar';
 function Home() {
   const [pokemons, setPokemons] = useState([]);
   const [pokemonDetails, setPokemonDetails] = useState([]);
-  const [nexPageURL, setNextPageURL] = useState();
-  const [prevPageURL, setPrevPageURL] = useState();
+
+  // const [nexPageURL, setNextPageURL] = useState();
+  // const [prevPageURL, setPrevPageURL] = useState();
 
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const { currentUser, logout } = useAuth();
 
-  const handleCardDetails = (id) => {};
+  const [cardVisible, setCardVisible] = useState(false);
+  const [pokemonID, setPokemonID] = useState(0);
+
+  const handleCardDetails = (id) => {
+    let i = id - 1;
+    setPokemonID(i);
+    console.log(pokemonDetails[pokemonID].name);
+    setCardVisible(true);
+  };
 
   const getPokemons = async () => {
     const getPokemonData = await API.get('pokemon');
 
     let pokemons_data = [...pokemons, ...getPokemonData.data.results];
     setPokemons(pokemons_data);
-    setNextPageURL(getPokemonData.next);
-    setPrevPageURL(getPokemonData.previous);
-
-    // let temp2 = [];
 
     await Promise.all(
       getPokemonData.data.results.map(async (poke) => {
@@ -39,7 +45,7 @@ function Home() {
         let pokeDetails_data = pokeDetails.data;
 
         let temp =
-          pokemonDetails.includes(pokeDetails_data) === true
+          pokemonDetails.includes(pokeDetails_data.id) === true
             ? [...pokemonDetails]
             : pokemonDetails.push(pokeDetails_data);
 
@@ -49,11 +55,11 @@ function Home() {
         setPokemonDetails([...temp2]);
       })
     );
+    setLoading(true);
   };
 
   useEffect(() => {
     getPokemons();
-    setLoading(true);
   }, []);
 
   return (
@@ -75,13 +81,14 @@ function Home() {
               ) : (
                 pokemonDetails.map((pokemon) => {
                   return (
-                    <Card
-                      key={pokemon.id + pokemon.name}
-                      onClick={() => handleCardDetails(pokemon.id)}
-                      id={pokemon.id}
-                      name={pokemon.name}
-                      types={pokemon.types}
-                    />
+                    <div onClick={() => handleCardDetails(pokemon.id)}>
+                      <Card
+                        key={pokemon.id + pokemon.name}
+                        id={pokemon.id}
+                        name={pokemon.name}
+                        types={pokemon.types}
+                      />
+                    </div>
                   );
                 })
               )}
@@ -92,6 +99,17 @@ function Home() {
             </div>
           )}
         </PokeContainer>
+        {cardVisible && (
+          <CardDetails
+            visible={cardVisible}
+            setVisible={setCardVisible}
+            id={pokemonID}
+            name={pokemonDetails[pokemonID].name}
+            types={pokemonDetails[pokemonID].types}
+            height={pokemonDetails[pokemonID].height}
+            weight={pokemonDetails[pokemonID].weight}
+          />
+        )}
       </Wrapper>
     </>
   );
