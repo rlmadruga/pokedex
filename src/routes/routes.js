@@ -7,6 +7,7 @@ import Login from '../pages/Login/Login';
 import Home from '../pages/Home/Home';
 import ForgotPassword from '../pages/ForgotPassword/ForgotPassword';
 import VerifyEmail from '../pages/VerifyEmail/VerifyEmail';
+import NotFound from '../pages/NotFound/NotFound';
 
 export default function Routes() {
   return (
@@ -18,7 +19,7 @@ export default function Routes() {
           <Route path='/login' component={Login} />
           <PrivateRoute path='/home' component={Home} />
           <Route path='/forgot-password' component={ForgotPassword} />
-          <Route path='*' component={() => <div>Pagina 404</div>} />
+          <Route path='*' component={NotFound} />
         </Switch>
       </AuthProvider>
     </Router>
