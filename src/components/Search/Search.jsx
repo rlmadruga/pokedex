@@ -22,7 +22,7 @@ const Search = (props) => {
           onChange={handleChange}
           value={text}
           type='text'
-          placeholder='Search Pokemon by Number or Name'
+          placeholder='Search Pokemon by Name'
         />
       </SearchInternal>
     </SearchWrap>

@@ -7,6 +7,7 @@ import Loading from '../../components/Loading/Loading';
 import Search from '../../components/Search/Search';
 import API from '../../api/api';
 import Navbar from '../../components/Navbar/Navbar';
+import Favorite from '../../assets/images/Favourite_icon.svg';
 
 function Home() {
   const [pokemons, setPokemons] = useState([]);
@@ -31,6 +32,8 @@ function Home() {
     let searchLow = newSearch.toLowerCase();
     setSearch(searchLow);
   };
+
+  const [favorites, setFavorites] = useState('');
 
   const getPokemons = async () => {
     try {
@@ -72,7 +75,10 @@ function Home() {
     <>
       <Navbar currentUser={currentUser} logout={logout} />
       <Wrapper>
-        <Search search={handleSearch} />
+        <div className='Favorite'>
+          <Search search={handleSearch} />
+          <img src={Favorite} alt='' />
+        </div>
         <PokeContainer>
           {isLoading && pokemonDetails.length !== 0 ? (
             <ul

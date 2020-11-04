@@ -24,7 +24,6 @@ const Navbar = ({ currentUser, logout }) => {
       <div className='div-internal'>
         {currentUser ? (
           <>
-            <strong>Email:</strong>
             {currentUser.email}
             <button as={Link} onClick={handleLogout}>
               Logout

@@ -6,6 +6,7 @@ export const SearchWrap = styled.div`
   top: 15%;
   left: 50%;
   transform: translate(-50%, -50%);
+  clear: both;
 `;
 
 export const SearchInternal = styled.div`

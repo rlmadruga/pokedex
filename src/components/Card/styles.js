@@ -7,12 +7,10 @@ export const CardWrapper = styled.div`
   margin: 10px;
   padding: 20px;
   text-align: center;
-  /* filter: grayscale(100%); */
   transition: 0.2s;
 
   &:hover {
     cursor: pointer;
-    /* filter: none; */
     transition: 0.2s;
 
     transform: translateY(-5px) scale(1.005) translateZ(0);
