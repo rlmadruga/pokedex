@@ -12,9 +12,6 @@ function Home() {
   const [pokemons, setPokemons] = useState([]);
   const [pokemonDetails, setPokemonDetails] = useState([]);
 
-  // const [nexPageURL, setNextPageURL] = useState();
-  // const [prevPageURL, setPrevPageURL] = useState();
-
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -26,38 +23,43 @@ function Home() {
   const handleCardDetails = (id) => {
     let i = id - 1;
     setPokemonID(i);
-    console.log(pokemonDetails[pokemonID].name);
     setCardVisible(true);
   };
 
+  const [search, setSearch] = useState('');
+
   const getPokemons = async () => {
-    const getPokemonData = await API.get('pokemon');
+    try {
+      const getPokemonData = await API.get('pokemon');
+      let pokemons_data = [...pokemons, ...getPokemonData.data.results];
+      setPokemons(pokemons_data);
 
-    let pokemons_data = [...pokemons, ...getPokemonData.data.results];
-    setPokemons(pokemons_data);
+      await Promise.all(
+        getPokemonData.data.results.map(async (poke) => {
+          let url = poke.url.split('/');
+          let id = url[6];
 
-    await Promise.all(
-      getPokemonData.data.results.map(async (poke) => {
-        let url = poke.url.split('/');
-        let id = url[6];
+          let pokeDetails = await API.get(`pokemon/${id}`);
+          let pokeDetails_data = pokeDetails.data;
 
-        let pokeDetails = await API.get(`pokemon/${id}`);
-        let pokeDetails_data = pokeDetails.data;
+          let temp =
+            pokemonDetails.includes(pokeDetails_data.id) === true
+              ? [...pokemonDetails]
+              : pokemonDetails.push(pokeDetails_data);
 
-        let temp =
-          pokemonDetails.includes(pokeDetails_data.id) === true
-            ? [...pokemonDetails]
-            : pokemonDetails.push(pokeDetails_data);
+          let temp2 = [...pokemonDetails];
 
-        let temp2 = [...pokemonDetails];
+          temp2.sort((a, b) => a.id - b.id);
+          setPokemonDetails([...temp2]);
+        })
+      );
+    } catch (err) {
+      setError(err);
+    }
 
-        temp2.sort((a, b) => a.id - b.id);
-        setPokemonDetails([...temp2]);
-      })
-    );
     setLoading(true);
   };
-
+  console.log(search);
   useEffect(() => {
     getPokemons();
   }, []);
@@ -66,7 +68,7 @@ function Home() {
     <>
       <Navbar currentUser={currentUser} logout={logout} />
       <Wrapper>
-        <Search />
+        <Search onChange={(e) => setSearch(e.target.value)} />
         <PokeContainer>
           {isLoading && pokemonDetails.length !== 0 ? (
             <ul
@@ -79,18 +81,20 @@ function Home() {
               {error ? (
                 <li>{error.message}</li>
               ) : (
-                pokemonDetails.map((pokemon) => {
-                  return (
-                    <div onClick={() => handleCardDetails(pokemon.id)}>
-                      <Card
-                        key={pokemon.id + pokemon.name}
-                        id={pokemon.id}
-                        name={pokemon.name}
-                        types={pokemon.types}
-                      />
-                    </div>
-                  );
-                })
+                pokemonDetails
+                  .filter((poke) => poke.name.includes(search.toLowerCase()))
+                  .map((pokemon) => {
+                    return (
+                      <div key={pokemon.id} onClick={() => handleCardDetails(pokemon.id)}>
+                        <Card
+                          key={pokemon.id + pokemon.name}
+                          id={pokemon.id}
+                          name={pokemon.name}
+                          types={pokemon.types}
+                        />
+                      </div>
+                    );
+                  })
               )}
             </ul>
           ) : (
