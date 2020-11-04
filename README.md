@@ -16,6 +16,14 @@ React | Hooks | API | axios | styled-components | Firebase
 
 <br/>
 
+## Features
+
+- [x] Search com os Pokemons listados inicialmente
+- [ ] Paginação
+- [ ] Favoritos
+
+<br/>
+
 ## Para rodar localmente:
 
 Faça o download do projeto, ou clone:
