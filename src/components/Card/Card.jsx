@@ -14,12 +14,13 @@ const Card = ({ name, id, types }) => {
   const color = pokemonTypeColors[type];
   // console.log('color', color);
 
+  // color = { color };
   return (
     <CardWrapper color={color}>
       <img className='img-favorite' src={FavoriteIcon} alt='Favorite Icon' />
       <ImgContainer>
         <img
-          src={`https://pokeres.bastionbot.org/images/pokemon/${id}.png`}
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
           alt={namePokemon}
         />
       </ImgContainer>

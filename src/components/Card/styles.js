@@ -7,12 +7,12 @@ export const CardWrapper = styled.div`
   margin: 10px;
   padding: 20px;
   text-align: center;
-  filter: grayscale(100%);
+  /* filter: grayscale(100%); */
   transition: 0.2s;
 
   &:hover {
     cursor: pointer;
-    filter: none;
+    /* filter: none; */
     transition: 0.2s;
 
     transform: translateY(-5px) scale(1.005) translateZ(0);
@@ -42,7 +42,8 @@ export const ImgContainer = styled.div`
 
   img {
     margin-top: 15px;
-    max-width: 90%;
+    max-width: 100%;
+    width: 100px;
   }
 `;
 

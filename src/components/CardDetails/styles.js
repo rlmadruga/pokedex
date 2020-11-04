@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const CardDetailsWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  background: rgba(0, 0, 0, 0.5);
 `;
 
-export const Main = styled.div`
+export const CardDetailsMain = styled.div`
   position: fixed;
   width: 50vw;
   height: auto;
@@ -18,48 +19,47 @@ export const Main = styled.div`
   transform: translate(-50%, -50%);
   background-color: #fff;
   border-radius: 10px;
-
-  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-    0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-    0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
 `;
 
-export const ImageWrapper = styled.div`
+export const CardDetailsImage = styled.div`
   width: auto;
   height: 503px;
   float: left;
   min-width: 250px;
   box-sizing: border-box;
-
   img {
     width: 25vw;
     min-width: 250px;
     height: 503px;
-    object-fit: cover;
-    border-radius: 10px;
+    object-fit: contain;
   }
 `;
 
-export const Container = styled.div`
+export const CardDetailsContainer = styled.div`
   width: 50%;
   height: 503px;
   float: right;
-  padding: 15% 21px 27px 30px;
+  padding: 32px 21px 27px 30px;
   div:after {
     content: '';
     display: table;
     clear: both;
   }
+  i {
+    cursor: pointer;
+    position: absolute;
+    right: 1rem;
+  }
 `;
 
-export const Title = styled.h3`
-  font-size: 2rem;
+export const CardDetailsTitle = styled.h3`
+  font-size: 1.5rem;
   font-weight: 600;
   line-height: 26px;
   margin-bottom: 10px;
 `;
 
-export const SubTitle = styled.h5`
+export const CardDetailsSubTitle = styled.h5`
   font-size: 1rem;
   line-height: 1.5rem;
   font-weight: 400;
@@ -67,22 +67,15 @@ export const SubTitle = styled.h5`
   margin-top: 0px;
 `;
 
-export const Text = styled.h5`
+export const CardDetailsText = styled.h5`
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.5rem;
   margin-bottom: 10px;
 `;
 
-export const SubText = styled(Text)`
+export const CardDetailsSubText = styled(CardDetailsText)`
   font-weight: 400;
   margin-bottom: 24px;
   margin-top: 0px;
-
-  img {
-    position: relative;
-    left: 35%;
-    margin-top: 30px;
-    width: 50px;
-  }
 `;
