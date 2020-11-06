@@ -18,6 +18,7 @@ React | Hooks | API | axios | styled-components | Firebase
 
 ## Features
 
+- [x] Sign Up, Login, Verify Email com Firebase
 - [x] Search com os Pokemons listados inicialmente
 - [ ] Paginação
 - [ ] Favoritos
