@@ -12,8 +12,6 @@
 
 React | Hooks | API | axios | styled-components | Firebase
 
-[Link para o Trello!](https://trello.com/b/p5F9fkKt/pokedex)
-
 <br/>
 
 ## Features
